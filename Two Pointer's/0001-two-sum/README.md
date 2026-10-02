@@ -484,4 +484,4 @@ O(n) time
 O(n) space
 ```
 
-For the follow-up asking for **less than O(n²)**, the HashMap approach gives an **O(n)** solution.
+For the follow-up asking for **less than O(n²)**, the HashMap approach gives an **O(n)** solution...
