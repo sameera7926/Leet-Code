@@ -3,7 +3,7 @@
 <p>The <strong>reverse degree</strong> is calculated as follows:</p>
 
 <ol>
-	<li>For each character, multiply its position in the <em>reversed</em> alphabet (<code>&#39;a&#39;</code> = 26, <code>&#39;b&#39;</code> = 25, ..., <code>&#39;z&#39;</code> = 1) with its position in the string <strong>(1-indexed)</strong>.</li>
+	<li>For each character, multiply its position in the <em>reversed</em> alpha/.bet (<code>&#39;a&#39;</code> = 26, <code>&#39;b&#39;</code> = 25, ..., <code>&#39;z&#39;</code> = 1) with its position in the string <strong>(1-indexed)</strong>.</li>
 	<li>Sum these products for all characters in the string.</li>
 </ol>
 
