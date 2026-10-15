@@ -1,0 +1,123 @@
+# LeetCode 383: Ransom Note
+
+## 1. Problem
+
+Given two strings, `ransomNote` and `magazine`, return `true` if `ransomNote` can be constructed using the characters from `magazine`; otherwise, return `false`.
+
+Each character in `magazine` can be used only once.
+
+## 2. Examples
+
+**Example 1**
+
+* Input: `ransomNote = "a"`, `magazine = "b"`
+* Output: `false`
+
+**Example 2**
+
+* Input: `ransomNote = "aa"`, `magazine = "ab"`
+* Output: `false`
+
+**Example 3**
+
+* Input: `ransomNote = "aa"`, `magazine = "aab"`
+* Output: `true`
+
+## 3. Pattern
+
+**Frequency Counting — Array**
+
+Use an array of size 26 because the problem contains lowercase English letters.
+
+## 4. Approach
+
+1. Create an integer array of size 26.
+2. Count the frequency of each character in `magazine`.
+3. Traverse each character in `ransomNote`.
+4. If the required character's count is `0`, return `false`.
+5. Otherwise, decrease its count by one because that character has been used.
+6. If every character is available, return `true`.
+
+## 5. Java Code
+
+```java
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        int[] arr = new int[26];
+
+        for (int i = 0; i < magazine.length(); i++) {
+            arr[magazine.charAt(i) - 'a']++;
+        }
+
+        for (int i = 0; i < ransomNote.length(); i++) {
+            char ch = ransomNote.charAt(i);
+
+            if (arr[ch - 'a'] == 0) {
+                return false;
+            }
+
+            arr[ch - 'a']--;
+        }
+
+        return true;
+    }
+}
+```
+
+## 6. Dry Run
+
+**Input:**
+
+* `ransomNote = "aab"`
+* `magazine = "aba"`
+
+### Step 1: Count magazine characters
+
+| Character | Frequency |
+| --------- | --------: |
+| a         |         2 |
+| b         |         1 |
+
+### Step 2: Check ransomNote
+
+| Character needed | Count before use | Count after use |
+| ---------------- | ---------------: | --------------: |
+| a                |                2 |               1 |
+| a                |                1 |               0 |
+| b                |                1 |               0 |
+
+Every required character is available.
+
+**Output:** `true`
+
+### When does it return false?
+
+Input:
+
+* `ransomNote = "aab"`
+* `magazine = "abb"`
+
+The magazine contains only one `a`, but the ransom note needs two.
+
+After using the first `a`, its frequency becomes `0`. When the second `a` is requested, the code returns `false`.
+
+## 7. Complexity Analysis
+
+* **Time Complexity:** `O(n + m)` — each string is traversed once.
+* **Space Complexity:** `O(1)` — the array always contains exactly 26 positions.
+
+Here, `n` is the length of `magazine` and `m` is the length of `ransomNote`.
+
+## 8. Interview Notes
+
+* Frequency counting helps track how many copies of each character are available.
+* Decrease the count whenever a character is used.
+* Never allow a character's available count to be exceeded.
+* An array is suitable because the input contains lowercase English letters.
+* A `HashMap` is another option, but the fixed-size array is simpler and uses constant auxiliary space.
+
+## 9. Key Takeaway
+
+**Count available characters → Check required characters → Decrease their counts.**
+
+This pattern is useful for character-frequency problems.
